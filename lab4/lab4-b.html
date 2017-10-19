@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>lab4-b</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        
+        $("p").click(function(){
+            $(this).css("border","2px solid");
+        });
+        
+        $("img").click(function(){
+            $("img").css("width","50");
+            $(".x").trigger("click");
+        });
+    });
+    
+</script>
+    
+</head>
+<body>
+    <p class="x">I'm a test text</p>
+    <p>I'm also a test text</p>
+    <p class="x">test again</p>
+    <img src="bird.jpg" alt="bird"/>
+    <img src="cat.jpg" alt="cat"/>
+    <img src="dog.jpg" alt="dog"/>
+    <img src="fish.jpg" alt="fish"/>
+</body>
+</html>
