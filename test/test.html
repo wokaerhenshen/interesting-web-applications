@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
+     <link rel="stylesheet" href="css/lightbox.min.css">
+    <script>
+        $(function(){
+            $('form').validate({
+                rules:{
+                    y:{
+                       
+                       range:[1900,2017] 
+                    },
+                   s:{
+                       
+                       range:[7,13] 
+                   }
+                }    
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <form action="anywhere.php">
+        year of birth:<input type="textbox" class="required number" name="y" id="y"><br>
+        shoe size:<input type="textbox" class="required number" name="s" id="s"><br>
+        <input type="submit">
+    </form>
+      <div>
+      <a class="example-image-link" href="img/1.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image" src="img/1.jpg" alt=""/></a>
+      <a class="example-image-link" href="img/2.jpg" data-lightbox="example-set" data-title="Or press the right arrow on your keyboard."><img class="example-image" src="img/2.jpg" alt="" /></a>
+      <a class="example-image-link" href="img/3.jpg" data-lightbox="example-set" data-title="The next image in the set is preloaded as you're viewing."><img class="example-image" src="img/3.jpg" alt="" /></a>
+      <a class="example-image-link" href="img/4.jpg" data-lightbox="example-set" data-title="Click anywhere outside the image or the X to the right to close."><img class="example-image" src="img/4.jpg" alt="" /></a>
+    </div>
+     <script src="js/lightbox-plus-jquery.min.js"></script>
+
+</body>
+</html>

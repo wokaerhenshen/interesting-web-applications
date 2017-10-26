@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>lab6</title>
+    <link rel="stylesheet" href="css/accordion.css">
+    <link rel="stylesheet" href="css/datepicker.css">
+    <link rel="stylesheet" type="text/css" href="css/style1.css" title="styles1" media="screen" />
+    <link rel="alternate stylesheet" type="text/css" href="css/style2.css" title="styles2" media="screen" />
+    <link rel="alternate stylesheet" type="text/css" href="css/style3.css" title="styles3" media="screen" />
+    <link rel="stylesheet" href="css/global.css" />
+    <style type="text/css">
+        
+        div.demo, div.inner {  text-align: center; font-family: verdana, arial, sans-serif;}
+        div.demo  { float: left; width: 18em; padding: 20px; margin: 1em; background-color: #6af; }
+        .demo_end{
+            clear: left;
+        }
+    </style>
+    <script src="js/jq.js"></script>
+    <script src="js/jq.date.js"></script>
+    <script src="js/stylesheetToggle.js"></script>
+    <script src="js/jeditable.js"></script>
+    <script src="js/jquery.corner.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>
+    <script src="js/jtip.js"></script>
+    <script language="JavaScript">
+
+        $(document).ready(function() {
+
+        $('#trip input#leavedate, #trip input#returndate').datepicker({ dateFormat: 'D, M d, yy', showOn: 'button', buttonImage: 'img/1.png', buttonImageOnly: true }); // format: Thurs, Jan 31, 2008, only show when the user clicks the calendar
+
+});
+
+    </script>
+	<script type="text/javascript">
+	$(function()
+		{
+			// Call stylesheet init so that all stylesheet changing functions 
+			// will work.
+			$.stylesheetInit();
+			
+			// This code loops through the stylesheets when you click the link with 
+			// an ID of "toggler" below.
+			$('#toggler').bind(
+				'click',
+				function(e)
+				{
+					$.stylesheetToggle();
+					return false;
+				}
+			);
+			
+			// When one of the styleswitch links is clicked then switch the stylesheet to
+			// the one matching the value of that links rel attribute.
+			$('.styleswitch').bind(
+				'click',
+				function(e)
+				{
+					$.stylesheetSwitch(this.getAttribute('rel'));
+					return false;
+				}
+			);
+		}
+	);
+	</script>
+
+    <script type="text/javascript" charset="utf-8">
+
+$(function() {
+        
+  $(".editable_select").editable("<?php print $url ?>save.php", { 
+    indicator : '<img src="img/indicator.gif">',
+    data   : "{'Lorem ipsum':'Lorem ipsum','Ipsum dolor':'Ipsum dolor','Dolor sit':'Dolor sit'}",
+    type   : "select",
+    submit : "OK",
+    style  : "inherit",
+    submitdata : function() {
+      return {id : 2};
+    }
+  });
+  $(".editable_select_json").editable("<?php print $url ?>save.php", { 
+    indicator : '<img src="img/indicator.gif">',
+    loadurl : "<?php print $url ?>json.php",
+    type   : "select",
+    submit : "OK",
+    style  : "inherit"
+  });
+  $(".editable_textarea").editable("<?php print $url ?>save.php", { 
+      indicator : "<img src='img/indicator.gif'>",
+      type   : 'textarea',
+      submitdata: { _method: "put" },
+      select : true,
+      submit : 'OK',
+      cancel : 'cancel',
+      cssclass : "editable"
+  });
+  $(".editable_textile").editable("<?php print $url ?>save.php?renderer=textile", { 
+      indicator : "<img src='img/indicator.gif'>",
+      loadurl   : "<?php print $url ?>load.php",
+      type      : "textarea",
+      submit    : "OK",
+      cancel    : "Cancel",
+      tooltip   : "Click to edit..."
+  });
+  
+  $(".click").editable("<?php print $url ?>echo.php", { 
+      indicator : "<img src='img/indicator.gif'>",
+      tooltip   : "Click to edit...",
+      style  : "inherit"
+  });
+  $(".dblclick").editable("<?php print $url ?>echo.php", { 
+      indicator : "<img src='img/indicator.gif'>",
+      tooltip   : "Doubleclick to edit...",
+      event     : "dblclick",
+      style  : "inherit"
+  });
+  $(".mouseover").editable("<?php print $url ?>echo.php", { 
+      indicator : "<img src='img/indicator.gif'>",
+      tooltip   : "Move mouseover to edit...",
+      event     : "mouseover",
+      style  : "inherit"
+  });
+  
+  /* Should not cause error. */
+  $("#nosuch").editable("<?php print $url ?>echo.php", { 
+      indicator : "<img src='img/indicator.gif'>",
+      type   : 'textarea',
+      submit : 'OK'
+  });
+
+});
+</script>
+
+<script>
+    
+$(function(){
+    $('#corner_1').corner();
+    $('#corner_2').corner("bite");
+});    
+    
+</script>
+</head>
+<body>
+    <h1>Feature1</h1>
+    <div>
+        
+        <button class="accordion">Section 1</button>
+<div class="panel">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+
+<button class="accordion">Section 2</button>
+<div class="panel">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+
+<button class="accordion">Section 3</button>
+<div class="panel">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+        
+    </div>
+    <h1>Feature2</h1>
+       <div>
+           	<form id="trip" action="#">
+
+		<fieldset>
+			<legend>Trip Length</legend>
+
+			<div class="fields">
+			
+				<div><label for="leavedate">Departure Date:</label> <input type="text" id="leavedate" name="leavedate"/></div>
+				<div><label for="returndate">Return Date:</label> <input type="text" id="returndate" name="returndate"/></div>
+			</div>
+			
+		</fieldset>
+	
+	</form>
+       </div>
+    <h1>Feature3</h1>
+       <div>
+           	<p>
+	<!--	Currently active stylesheet:
+		<span id="st1">styles1</span>
+		<span id="st2">styles2</span>
+		<span id="st3">styles3</span>  -->
+	        </p>
+	        <p><a href="javascript:;" id="toggler">Toggle</a> between stylesheets.</p>
+	        <p>Choose a specific different stylesheet:</p>
+	        <ul>
+	   	<li><a href="#" rel="styles1" class="styleswitch">styles1</a></li>
+		<li><a href="javascript:;" rel="styles2" class="styleswitch">styles2</a></li>
+		<li><a href="javascript:;" rel="styles3" class="styleswitch">styles3</a></li>
+	        </ul>
+
+       </div>
+    <h1>Feature4</h1>
+       <div>
+         <p> I'm a test, you can't edit me.<br></p> 
+          <p>I'm a test, you can try whether you can <b class="click" style="display: inline">edit me!</b></p> 
+           
+       </div>
+    <h1>Feature5</h1>
+       <div>
+           
+           <div class="demo" id="corner_1">I'm a round div</div>
+           <div class="demo "id="corner_2">I'm another corner test</div>
+           <div class="demo_end"></div>
+       </div>
+    <h1>Feature6</h1>
+       <div>
+      
+          <p> The theory of relativity usually encompasses two interrelated theories by <a href="feature6_pages/page1.htm?width=600" class="jTip" id="one" name="Albert Einstein">Albert Einstein</a>: special relativity and general relativity.Special relativity applies to elementary particles and their interactions, describing all their physical phenomena except gravity. General relativity explains the law of gravitation and its relation to other forces of nature. It applies to the cosmological and astrophysical realm, including astronomy.<br><br>
+              The theory transformed <a href="feature6_pages/page2.htm?width=600" class="jTip" id="one" name="theoretical physics">theoretical physics</a> and astronomy during the 20th century, superseding a 200-year-old theory of mechanics created primarily by Isaac Newton. It introduced concepts including spacetime as a unified entity of space and time, relativity of simultaneity, kinematic and gravitational time dilation, and length contraction. In the field of physics, relativity improved the science of elementary particles and their fundamental interactions, along with ushering in the nuclear age. With relativity, cosmology and astrophysics predicted extraordinary astronomical phenomena such as neutron stars, black holes, and gravitational waves.</p>
+           
+       </div>
+       <script src="js/accordion.js"></script>
+       <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+       <script type="text/javascript">
+    _uacct = "UA-190966-1";
+    urchinTracker();
+       </script>
+</body>
+</html>
