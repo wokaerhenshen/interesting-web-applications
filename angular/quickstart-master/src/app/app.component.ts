@@ -47,7 +47,7 @@ export class AppComponent {
       this.resultdiv=null;
      // Number(this.Operand1)+1;
     }
-
+    
     doDifference(){
       this.resultdiff=this.getround((Number(this.difnum1) - Number(this.difnum2)),2);
       this.clear();
