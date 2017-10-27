@@ -1,0 +1,29 @@
+h1 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+}
+
+.box1{
+  width: 40px;
+  margin-right: 10px;
+  
+}
+
+.box2{
+  width: 40px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.more{
+  margin-left: 14px;
+}
+
+.box3{
+  margin-right: 30px;
+}
+
+span{
+  color: red;
+}

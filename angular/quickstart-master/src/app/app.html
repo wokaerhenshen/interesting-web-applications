@@ -1,0 +1,49 @@
+
+
+<div>
+    <form ng-submit="" #myForm="ngForm">
+    Sum:<br>
+    <input class="box1" type="text" pattern="^[0-9]+.{0,1}[0-9]{0,100}" required [(ngModel)]="addnum1" name="numadd1" #numadd1="ngModel">
+   +
+    <input class="box2" type="text" pattern="^[0-9]+.{0,1}[0-9]{0,100}" required [(ngModel)]="addnum2" name="numadd2" #numadd2="ngModel">
+    <button [disabled] = "!myForm.form.valid" class="box3" (click)="doAddition()">=</button> {{resultadd}}
+    <span *ngIf="numadd1?.errors?.pattern">*A number is required</span>
+    <span *ngIf="numadd2?.errors?.pattern">*A number is required</span>
+    </form>
+</div>
+
+<div>
+    <form ng-submit="" #myForm2="ngForm">
+    Difference:<br>
+    <input class="box1" type="text" pattern="^[0-9]+.{0,1}[0-9]{0,100}" required [(ngModel)]="difnum1" name="numdif1" #numdif1="ngModel">
+    -
+     <input class="box2 more" type="text"  pattern="^[0-9]+.{0,1}[0-9]{0,100}" required [(ngModel)]="difnum2" name="numdif2" #numdif2="ngModel">
+     <button [disabled] = "!myForm2.form.valid" class="box3" (click)="doDifference()">=</button> {{resultdiff}}
+     <span *ngIf="numdif1?.errors?.pattern">*A number is required</span>
+     <span *ngIf="numdif2?.errors?.pattern">*A number is required</span>
+    </form>
+    </div>
+
+<div>
+    <form ng-submit="" #myForm3="ngForm">
+    Product:<br>
+    <input class="box1" type="text" pattern="^[0-9]+.{0,1}[0-9]{0,100}" required [(ngModel)]="mulnum1" name="nummul1" #nummul1="ngModel">
+    *
+     <input class="box2 " type="text" pattern="^[0-9]+.{0,1}[0-9]{0,100}" required [(ngModel)]="mulnum2" name="nummul2" #nummul2="ngModel">
+     <button [disabled] = "!myForm3.form.valid" class="box3" (click)="doProduct()">=</button> {{resultmul}}
+     <span *ngIf="nummul1?.errors?.pattern">*A number is required</span>
+     <span *ngIf="nummul2?.errors?.pattern">*A number is required</span>
+    </form>
+</div>
+
+<div>
+    <form ng-submit="" #myForm4="ngForm">
+    Quotient:<br>
+    <input class="box1" type="text" pattern="^[0-9]+.{0,1}[0-9]{0,100}" required [(ngModel)]="divnum1" name="numdiv1" #numdiv1="ngModel">
+    \
+     <input class="box2 more" type="text" pattern="^[0-9]+.{0,1}[0-9]{0,100}" required [(ngModel)]="divnum2" name="numdiv2" #numdiv2="ngModel">
+     <button [disabled] = "!myForm4.form.valid" class="box3" (click)="doQuotient()">=</button> {{resultdiv}}
+     <span *ngIf="numdiv1?.errors?.pattern">*A number is required</span>
+     <span *ngIf="numdiv2?.errors?.pattern">*A number is required</span>
+    </form>
+    </div>
