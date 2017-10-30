@@ -24,7 +24,8 @@ var AppComponent = (function () {
         return Math.round(num * Math.pow(10, len)) / Math.pow(10, len);
     };
     AppComponent.prototype.doAddition = function () {
-        this.resultadd = this.getround((Number(this.addnum1) + Number(this.addnum2)), 2);
+        this.resultadd = (this.getround((Number(this.addnum1) + Number(this.addnum2)), 2)).toString();
+        this.resultadd = this.addnum1 + " + " + this.addnum2 + " = " + this.resultadd;
         this.clear();
         this.resultdiff = null;
         this.resultmul = null;
@@ -32,21 +33,24 @@ var AppComponent = (function () {
         // Number(this.Operand1)+1;
     };
     AppComponent.prototype.doDifference = function () {
-        this.resultdiff = this.getround((Number(this.difnum1) - Number(this.difnum2)), 2);
+        this.resultdiff = this.getround((Number(this.difnum1) - Number(this.difnum2)), 2).toString();
+        this.resultdiff = this.difnum1 + " - " + this.difnum2 + " = " + this.resultdiff;
         this.clear();
         this.resultadd = null;
         this.resultmul = null;
         this.resultdiv = null;
     };
     AppComponent.prototype.doProduct = function () {
-        this.resultmul = this.getround((Number(this.mulnum1) * Number(this.mulnum2)), 2);
+        this.resultmul = this.getround((Number(this.mulnum1) * Number(this.mulnum2)), 2).toString();
+        this.resultmul = this.mulnum1 + " * " + this.mulnum2 + " = " + this.resultmul;
         this.clear();
         this.resultadd = null;
         this.resultdiff = null;
         this.resultdiv = null;
     };
     AppComponent.prototype.doQuotient = function () {
-        this.resultdiv = this.getround((Number(this.divnum1) / Number(this.divnum2)), 2);
+        this.resultdiv = this.getround((Number(this.divnum1) / Number(this.divnum2)), 2).toString();
+        this.resultdiv = this.divnum1 + " / " + this.divnum2 + " = " + this.resultdiv;
         this.clear();
         this.resultadd = null;
         this.resultdiff = null;
