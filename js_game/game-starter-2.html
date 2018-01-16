@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+	#div1{min-height:100px; background-color:cyan}
+	#div2{min-height:100px; background-color:pink}
+	#div3{min-height:100px; background-color:silver}
+	img{height:80px}
+	.selected{border: red solid 2px}
+</style>
+<script>
+
+letterToMove = 'a'
+
+function moveLetter(letterToBeMoved){
+
+	var letter = document.getElementById(letterToBeMoved)
+
+	// is this the last img in its div
+	if(letter.nextSibling == null){
+		// does letter img's parent div have a next sibling?
+		if(letter.parentNode.nextSibling != null){
+			letter.parentNode.nextSibling.appendChild(letter)
+		}else{
+			// letter is the last image, in the last div
+			// let's make it the first img in the first div
+			document.getElementById('div1').insertBefore(
+				letter, document.getElementById('div1').firstChild
+			)
+		}
+	}else{
+		// letter is NOT the last img in this div
+		// let's move it right
+		letter.parentNode.insertBefore(letter.nextSibling, letter)
+	}
+}
+
+function move(){
+	// is this the last img in its div
+	if(this.nextSibling == null){
+		// does this img's parent div have a next sibling?
+		if(this.parentNode.nextSibling != null){
+			this.parentNode.nextSibling.appendChild(this)
+		}else{
+			// this is the last image, in the last div
+			// let's make it the first img in the first div
+			document.getElementById('div1').insertBefore(
+				this, document.getElementById('div1').firstChild
+			)
+		}
+	}else{
+		// this is NOT the last img in this div
+		// let's move it right
+		this.parentNode.insertBefore(this.nextSibling, this)
+	}
+}
+
+function init(){
+	var div1 = document.createElement('div')
+	div1.id = 'div1'
+	document.body.appendChild(div1)
+	
+	var div2 = document.createElement('div')
+	div2.id = 'div2'
+	document.body.appendChild(div2)
+	
+	var div3 = document.createElement('div')
+	div3.id = 'div3'
+	document.body.appendChild(div3)
+	
+	for(let i = 'a'.charCodeAt(0); i <= 'z'.charCodeAt(0); i++){
+		var letter = String.fromCharCode(i)
+		
+		var img = document.createElement('img')
+		img.id = letter
+		img.src = 'images/letters/' + letter + '.png'
+		img.onclick=move
+		div1.appendChild(img)
+	}
+}
+
+function moveA(e){
+	keyCode = null
+	
+	if(e.which){
+		keyCode = e.which
+	}else if(e.event){
+		keyCode = e.event
+	}
+	
+	// 65-90 are letters A-Z
+	if(keyCode >= 65 && keyCode <= 90){
+		// change from uppercase to lowercase
+		keyCode += 32
+		
+		// changing from highlighting previously-selected
+		// letter to the newly-selected letter
+		document.getElementById(letterToMove).className = ''
+		letterToMove = String.fromCharCode(keyCode)
+		document.getElementById(letterToMove).className = 'selected'
+	}else if(keyCode == 39){
+		moveLetter(letterToMove)
+	}
+}
+
+onload=init
+onkeydown=moveA
+
+</script>
+</head>
+<body></body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+             #div1{height:100px;width:300px;background-color:cyan}
+             #div2{height:100px;width:300px; background-color:pink}
+	         #div3{height:100px;width:300px; background-color:silver}
+             img{height: 95%;width: 32%;}
+             .selected{border: red solid 2px}
+        </style>
+       <script>
+
+            numberToMove = 1
+
+           // random sort 1-9
+           Array.prototype.shuffle = function(){
+               var input = this
+               for (var i = input.length-1;i>=0;i--){
+                   var randomIndex = Math.floor(Math.random()*(i+1))
+                   var itemAtIndex = input[randomIndex]
+                   input[randomIndex] = input[i]
+                   input[i] = itemAtIndex
+               }
+               return input
+           }
+
+           function imageSelected(){
+            document.getElementById(numberToMove).className = ''
+            numberToMove = this.id
+            document.getElementById(numberToMove).className = 'selected'
+           }
+
+           function rightMove(numberToMove){
+               console.log(numberToMove)
+               var number = document.getElementById(numberToMove)
+               console.log(number)
+               if (number.nextSibling == null){
+                    number.parentNode.insertBefore(number,number.parentNode.firstChild)
+               }
+               else{
+                   number.parentNode.insertBefore(number.nextSibling,number)
+               }
+
+           }
+
+           function leftMove(numberToMove){
+            //    console.log(numberToMove)
+               var number = document.getElementById(numberToMove)
+            //    console.log(number)
+            //    console.log(number.previousSibling)
+               if (number.previousSibling == null){
+                   console.log(number.parentNode.lastChild)
+                   number.parentNode.insertBefore(number.nextSibling,number)
+                   number.parentNode.insertBefore(number.parentNode.lastChild,number)
+
+               }
+               else{
+                   number.parentNode.insertBefore(number,number.previousSibling)
+               }
+
+           }
+
+           function upMove(numberToMove){
+            var number = document.getElementById(numberToMove)
+            var position = 1
+            for (var n = 0;n<3;n++){
+                if (number.parentNode.childNodes[n].src == number.src){
+                   // console.log(n)
+                   position = n
+                   break
+                }
+                
+            }
+
+            if(number.parentNode.previousSibling.nodeName != "#text"){
+                console.log(number.parentNode.previousSibling)
+                var temp_src = number.parentNode.previousSibling.childNodes[position].src
+                var temp_id = number.parentNode.previousSibling.childNodes[position].id
+                number.parentNode.previousSibling.childNodes[position].src = number.src
+                number.parentNode.previousSibling.childNodes[position].id = number.id
+                number.src = temp_src
+                number.id = temp_id
+                document.getElementById(number.id).className = ''
+                numberToMove = number.parentNode.previousSibling.childNodes[position].id
+                document.getElementById(numberToMove).className = 'selected'   
+            }else{
+                var temp_src = number.parentNode.nextSibling.nextSibling.childNodes[position].src
+                var temp_id = number.parentNode.nextSibling.nextSibling.childNodes[position].id
+                number.parentNode.nextSibling.nextSibling.childNodes[position].src  = number.src
+                number.parentNode.nextSibling.nextSibling.childNodes[position].id = number.id
+                number.src = number.parentNode.nextSibling.childNodes[position].src
+                number.id = number.parentNode.nextSibling.childNodes[position].id
+                number.parentNode.nextSibling.childNodes[position].src = temp_src
+                number.parentNode.nextSibling.childNodes[position].id = temp_id
+                document.getElementById(number.id).className = ''
+                numberToMove = number.parentNode.nextSibling.nextSibling.childNodes[position].id
+                document.getElementById(numberToMove).className = 'selected'
+            }
+           }
+
+           function downMove(numberToMove){
+            var number = document.getElementById(numberToMove)
+            var position = 1
+            for (var n = 0;n<3;n++){
+                if (number.parentNode.childNodes[n].src == number.src){
+                   // console.log(n)
+                   position = n
+                   break
+                }
+                
+            }
+            console.log(position)
+            if(number.parentNode.nextSibling != null){
+                var temp_src = number.parentNode.nextSibling.childNodes[position].src
+                var temp_id = number.parentNode.nextSibling.childNodes[position].id
+                number.parentNode.nextSibling.childNodes[position].src = number.src
+                number.parentNode.nextSibling.childNodes[position].id = number.id
+                number.src = temp_src
+                number.id = temp_id
+                document.getElementById(number.id).className = ''
+                numberToMove = number.parentNode.nextSibling.childNodes[position].id
+                document.getElementById(numberToMove).className = 'selected'            
+            }
+
+            else{
+                var temp_src = number.parentNode.previousSibling.previousSibling.childNodes[position].src
+                var temp_id = number.parentNode.previousSibling.previousSibling.childNodes[position].id
+                number.parentNode.previousSibling.previousSibling.childNodes[position].src  = number.src
+                number.parentNode.previousSibling.previousSibling.childNodes[position].id = number.id
+                number.src = number.parentNode.previousSibling.childNodes[position].src
+                number.id = number.parentNode.previousSibling.childNodes[position].id
+                number.parentNode.previousSibling.childNodes[position].src = temp_src
+                number.parentNode.previousSibling.childNodes[position].id = temp_id
+                document.getElementById(number.id).className = ''
+                numberToMove = number.parentNode.previousSibling.previousSibling.childNodes[position].id
+                document.getElementById(numberToMove).className = 'selected'
+                }
+            }
+
+            function check(){
+                console.log(parseInt(document.getElementById("div1").childNodes[0].id) + parseInt(document.getElementById("div1").childNodes[1].id)+ parseInt(document.getElementById("div1").childNodes[2].id) )
+                if (parseInt(document.getElementById("div1").childNodes[0].id) + parseInt(document.getElementById("div1").childNodes[1].id)+ parseInt(document.getElementById("div1").childNodes[2].id) == 15
+                &&  parseInt(document.getElementById("div2").childNodes[0].id) + parseInt(document.getElementById("div2").childNodes[1].id)+ parseInt(document.getElementById("div2").childNodes[2].id) == 15
+                &&  parseInt(document.getElementById("div3").childNodes[0].id) + parseInt(document.getElementById("div3").childNodes[1].id)+ parseInt(document.getElementById("div3").childNodes[2].id) == 15
+                &&  parseInt(document.getElementById("div1").childNodes[0].id) + parseInt(document.getElementById("div2").childNodes[0].id)+ parseInt(document.getElementById("div3").childNodes[0].id) == 15
+                &&  parseInt(document.getElementById("div1").childNodes[1].id) + parseInt(document.getElementById("div2").childNodes[1].id)+ parseInt(document.getElementById("div3").childNodes[1].id) == 15
+                &&  parseInt(document.getElementById("div1").childNodes[2].id) + parseInt(document.getElementById("div2").childNodes[2].id)+ parseInt(document.getElementById("div3").childNodes[2].id) == 15 
+                &&  parseInt(document.getElementById("div1").childNodes[0].id) + parseInt(document.getElementById("div2").childNodes[1].id)+ parseInt(document.getElementById("div3").childNodes[2].id) == 15
+                &&  parseInt(document.getElementById("div1").childNodes[2].id) + parseInt(document.getElementById("div2").childNodes[1].id)+ parseInt(document.getElementById("div3").childNodes[0].id) == 15
+            ){
+                    alert("Congrats! You succeed!")
+
+                    clearInterval(timer)
+                    window.location.reload()
+                }
+            }
+
+
+           function init(){
+            var div1 = document.createElement('div')
+	        div1.id = 'div1'
+	        document.body.appendChild(div1)
+	
+	        var div2 = document.createElement('div')
+	        div2.id = 'div2'
+	        document.body.appendChild(div2)
+	
+	        var div3 = document.createElement('div')
+	        div3.id = 'div3'
+	        document.body.appendChild(div3)   
+
+            var arr = [1,2,3,4,5,6,7,8,9]
+            arr.shuffle()  
+            for (let i =0;i<3;i++){
+                var img = document.createElement('img')
+                img.id = arr[i]
+                img.src = 'images/' + arr[i] +'.png'
+                img.onclick=imageSelected
+                div1.appendChild(img)
+            }
+            for (let i =3;i<6;i++){
+                var img = document.createElement('img')
+                img.id = arr[i]
+                img.src = 'images/' + arr[i] +'.png'
+                img.onclick=imageSelected
+                div2.appendChild(img)
+            }
+            for (let i =6;i<9;i++){
+                var img = document.createElement('img')
+                img.id = arr[i]
+                img.src = 'images/' + arr[i] +'.png'
+                img.onclick=imageSelected
+                div3.appendChild(img)
+            }
+ 
+            console.log(arr) 
+            timer = setInterval("check()", 1000) 
+
+           }
+
+           function move(e){
+            keyCode = null
+	
+	        if(e.which){
+		        keyCode = e.which
+	        }else if(e.event){
+		        keyCode = e.event
+	        } 
+            if (keyCode == 39){
+                rightMove(numberToMove)
+            }
+            else if (keyCode == 37){
+                leftMove(numberToMove)
+            }
+            else if (keyCode== 38){
+                upMove(numberToMove)
+            }
+            else if (keyCode == 40){
+                downMove(numberToMove)
+            }
+           }
+
+
+
+           onload=init
+           onkeydown = move
+       </script>
+    </head>
+    <body></body>
+</html>
